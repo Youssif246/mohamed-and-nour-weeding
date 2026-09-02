@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دعوة زفاف أحمد وسارة | 25 ديسمبر 2026</title>
+  
+  <meta name="description" content="يسعدنا حضوركم ومشاركتنا أجمل لحظات العمر في قاعة الأحلام — ليلة استثنائية لا تُنسى.">
+  <meta property="og:title" content="دعوة زفاف أحمد وسارة | ليلة العمر">
+  <meta property="og:description" content="يسعدنا حضوركم ومشاركتنا أجمل لحظات العمر في قاعة الأحلام.">
+  <meta property="og:image" content="assets/images/hero-garden.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Arabic Typography & Luxury Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading-locked">
+
+  <!-- Atmospheric Background Canvas (Golden Embers & Petals) -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Film Grain Overlay for Cinematic Texture -->
+  <div class="cinematic-grain" aria-hidden="true"></div>
+
+  <!-- Soft Vignette & Ambient Light Leaks -->
+  <div class="ambient-vignette" aria-hidden="true"></div>
+
+  <!-- ========================================================
+       SCENE 0: CINEMATIC OPENING INTRO (Curtains & Reveal)
+       ======================================================== -->
+  <div id="cinematic-intro" class="cinematic-intro" role="dialog" aria-modal="true" aria-label="مقدمة الدعوة">
+    <div class="intro-curtain intro-curtain-left" id="curtain-left">
+      <div class="curtain-sheen"></div>
+    </div>
+    <div class="intro-curtain intro-curtain-right" id="curtain-right">
+      <div class="curtain-sheen"></div>
+    </div>
+
+    <!-- Centerpiece Portal & Opening Reveal -->
+    <div class="intro-portal" id="intro-portal">
+      <div class="intro-ornament-top">
+        <svg viewBox="0 0 120 40" class="svg-ornament" fill="none" stroke="currentColor">
+          <path d="M10 20 C 35 5, 45 35, 60 20 C 75 5, 85 35, 110 20" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="60" cy="20" r="3.5" fill="currentColor"/>
+          <circle cx="25" cy="18" r="1.5" fill="currentColor"/>
+          <circle cx="95" cy="18" r="1.5" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <p class="intro-subtitle">بسم الله الرحمن الرحيم</p>
+      <h1 class="intro-title">
+        <span class="intro-name intro-groom">أحمد</span>
+        <span class="intro-ampersand">
+          <svg viewBox="0 0 40 40" class="gold-ring-knot" fill="none">
+            <circle cx="16" cy="20" r="10" stroke="url(#goldGrad)" stroke-width="1.8"/>
+            <circle cx="24" cy="20" r="10" stroke="url(#goldGrad)" stroke-width="1.8"/>
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F4E3B2"/>
+                <stop offset="50%" stop-color="#D4AF37"/>
+                <stop offset="100%" stop-color="#AA771C"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="intro-name intro-bride">سارة</span>
+      </h1>
+
+      <p class="intro-caption">دعوة خاصة إلى ليلة لا تُنسى</p>
+
+      <button id="btn-enter-experience" class="btn-royal-portal" type="button" aria-label="افتح بطاقة الدعوة">
+        <span class="btn-bg-glow"></span>
+        <span class="btn-border-tracer"></span>
+        <span class="btn-text">افتح بطاقة الدعوة ✨</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MAIN SCROLL CONTAINER (Controlled by Lenis & GSAP)
+       ======================================================== -->
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ====================================================
+           SCENE 1: HERO SECTION (100vh Multi-Layer Parallax)
+           ==================================================== -->
+      <section id="hero" class="scene-hero" aria-label="الواجهة الرئيسية">
+        <!-- Parallax Background Layer -->
+        <div class="hero-bg-layer" id="hero-bg" style="background-image: url('assets/images/hero-light.jpg');"></div>
+        
+        <!-- Atmospheric Glow & Mist Layer -->
+        <div class="hero-mist-layer" id="hero-mist"></div>
+
+        <!-- Foreground Floral Arch Silhouette -->
+        <div class="hero-foreground-vignette"></div>
+
+        <!-- Hero Content Centerpiece -->
+        <div class="hero-content" id="hero-content">
+          <div class="royal-crest" data-speed="0.8">
+            <svg viewBox="0 0 100 80" class="crest-svg" fill="none" stroke="currentColor">
+              <path d="M50 5 C30 25, 20 45, 50 75 C80 45, 70 25, 50 5 Z" stroke-width="1" stroke-dasharray="2 2"/>
+              <circle cx="50" cy="40" r="14" stroke-width="1"/>
+              <path d="M50 30 L50 50 M40 40 L60 40" stroke-width="1.2"/>
+              <circle cx="50" cy="18" r="2" fill="currentColor"/>
+              <circle cx="50" cy="62" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+
+          <div class="hero-header-tag" data-speed="0.9">دعوة لحضور عقد قران وزفاف</div>
+
+          <div class="hero-names-wrapper" data-speed="1">
+            <span class="hero-name groom-name">أحمد</span>
+            
+            <div class="hero-divider-knot">
+              <span class="knot-line knot-line-right"></span>
+              <div class="knot-symbol">
+                <svg viewBox="0 0 32 32" class="knot-svg" fill="currentColor">
+                  <path d="M16 2 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z" opacity="0.85"/>
+                </svg>
+              </div>
+              <span class="knot-line knot-line-left"></span>
+            </div>
+
+            <span class="hero-name bride-name">سارة</span>
+          </div>
+
+          <p class="hero-subtext" data-speed="1.1">
+            يسعدنا حضوركم ومشاركتنا أجمل لحظات العمر
+          </p>
+
+          <div class="hero-cta-wrapper" data-speed="1.15">
+            <a href="#details" class="btn-hero-scroll" id="btn-hero-explore">
+              <span class="btn-pulse-ring"></span>
+              <span class="btn-label">اكتشف تفاصيل الحفل</span>
+              <span class="btn-arrow">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Gentle Floating Prompt -->
+        <div class="scroll-down-indicator" aria-hidden="true">
+          <span class="mouse-icon">
+            <span class="wheel"></span>
+          </span>
+          <span class="scroll-hint-text">اسحب لأسفل لمتابعة الرحلة</span>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 2: WEDDING DETAILS (Artistic Celestial Composition)
+           ==================================================== -->
+      <section id="details" class="scene-details" aria-label="تفاصيل الحفل">
+        <div class="scene-container">
+          <div class="section-badge">تفاصيل الليلة المباركة</div>
+          <h2 class="scene-title">موعدنا مع أجمل ليلة</h2>
+          <p class="scene-intro">
+            بأسمى معاني الود والبهجة، تتشرف عائلتا العروسين بدعوتكم لحضور حفل الزفاف المبارك
+          </p>
+
+          <!-- Artistic Celestial Astrolabe Composition -->
+          <div class="astrolabe-wrapper" id="astrolabe-composition">
+            <div class="astrolabe-halo" aria-hidden="true"></div>
+            <div class="astrolabe-ring ring-outer" aria-hidden="true"></div>
+            <div class="astrolabe-ring ring-mid" aria-hidden="true"></div>
+            <div class="astrolabe-ring ring-inner" aria-hidden="true"></div>
+
+            <div class="celestial-nodes-grid">
+              
+              <!-- Node 1: Date -->
+              <div class="celestial-card node-date" data-depth="1">
+                <div class="card-glass-glow"></div>
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <span class="node-tag">التاريخ المبارك</span>
+                <h3 class="node-main-val">الجمعة</h3>
+                <div class="node-accent-date">25 ديسمبر 2026</div>
+                <p class="node-hijri-date">الموافق 16 رجب 1448 هـ</p>
+              </div>
+
+              <!-- Center Medallion (Couple Monogram) -->
+              <div class="center-medallion" data-depth="0.5">
+                <div class="medallion-inner">
+                  <div class="medallion-monogram">أ & س</div>
+                  <div class="medallion-date">25.12.2026</div>
+                  <div class="medallion-glow-pulse"></div>
+                </div>
+              </div>
+
+              <!-- Node 2: Time -->
+              <div class="celestial-card node-time" data-depth="1">
+                <div class="card-glass-glow"></div>
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <span class="node-tag">توقيت الاستقبال</span>
+                <h3 class="node-main-val">8:00 مساءً</h3>
+                <div class="node-accent-time">مساء يوم الجمعة</div>
+                <p class="node-sub-note">نبدأ باستقبال ضيوفنا الكرام بكل حب</p>
+              </div>
+
+              <!-- Node 3: Venue -->
+              <div class="celestial-card node-venue" data-depth="1.2">
+                <div class="card-glass-glow"></div>
+                <div class="node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 21h18M5 21V7l7-4 7 4v14M9 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                  </svg>
+                </div>
+                <span class="node-tag">مكان الحفل</span>
+                <h3 class="node-main-val">قاعة الأحلام</h3>
+                <div class="node-accent-venue">القاعة الكبرى الملكية</div>
+                <p class="node-sub-note">أجواء استثنائية صُممت لراحتكم وسعادتكم</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 3: CINEMATIC COUNTDOWN TIMER
+           ==================================================== -->
+      <section id="countdown" class="scene-countdown" aria-label="العد التنازلي">
+        <div class="countdown-backdrop-glow" aria-hidden="true"></div>
+        <div class="scene-container">
+          <div class="section-badge">الأيام المتبقية على اللقاء</div>
+          <h2 class="scene-title">العد التنازلي لليلة العمر</h2>
+          <p class="scene-intro">نعد الدقائق والثواني بشوق حتى نراكم تزينون ليلتنا بحضوركم</p>
+
+          <div class="countdown-clock-grid" id="countdown-timer">
+            
+            <!-- Days Unit -->
+            <div class="countdown-unit-box" data-unit="days">
+              <div class="unit-dial-bezel">
+                <div class="unit-shine"></div>
+                <span class="unit-number" id="count-days">000</span>
+              </div>
+              <span class="unit-label">يوم</span>
+            </div>
+
+            <!-- Hours Unit -->
+            <div class="countdown-unit-box" data-unit="hours">
+              <div class="unit-dial-bezel">
+                <div class="unit-shine"></div>
+                <span class="unit-number" id="count-hours">00</span>
+              </div>
+              <span class="unit-label">ساعة</span>
+            </div>
+
+            <!-- Minutes Unit -->
+            <div class="countdown-unit-box" data-unit="minutes">
+              <div class="unit-dial-bezel">
+                <div class="unit-shine"></div>
+                <span class="unit-number" id="count-minutes">00</span>
+              </div>
+              <span class="unit-label">دقيقة</span>
+            </div>
+
+            <!-- Seconds Unit -->
+            <div class="countdown-unit-box" data-unit="seconds">
+              <div class="unit-dial-bezel">
+                <div class="unit-shine"></div>
+                <span class="unit-number" id="count-seconds">00</span>
+              </div>
+              <span class="unit-label">ثانية</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 4: LOCATION EXPERIENCE ("هنا تبدأ أجمل الذكريات")
+           ==================================================== -->
+      <section id="location" class="scene-location" aria-label="موقع الحفل">
+        <div class="scene-container">
+          <div class="section-badge">مقر الاحتفال</div>
+          <h2 class="scene-title">هنا تبدأ أجمل الذكريات</h2>
+          <p class="scene-intro">يسرنا استقبالكم في أبهى الصروح لنحتفل معاً بين الأهل والأحباب</p>
+
+          <div class="location-showcase-frame">
+            <!-- Venue Photo & Ambient Glass -->
+            <div class="venue-visual-card">
+              <div class="venue-img-wrap">
+                <img src="assets/images/venue-hall.jpg" alt="قاعة الأحلام الملكية" class="venue-image" loading="lazy">
+                <div class="venue-glass-overlay"></div>
+              </div>
+              
+              <!-- Floating Location Details -->
+              <div class="venue-card-details">
+                <div class="venue-badge-pill">
+                  <span class="venue-dot-pulse"></span>
+                  قاعة الأحلام الملكية
+                </div>
+                <h3 class="venue-title-text">Palace of Dreams</h3>
+                <p class="venue-address-text">طريق الملك عبدالعزيز — بوابة الضيوف الرئيسية</p>
+                
+                <div class="venue-highlights">
+                  <div class="highlight-item">
+                    <span class="hl-icon">🚗</span>
+                    <span class="hl-text">خدمة صف السيارات متوفرة (Valet Parking)</span>
+                  </div>
+                  <div class="highlight-item">
+                    <span class="hl-icon">🏛️</span>
+                    <span class="hl-text">مكتب استقبال خاص لتشريفات الضيوف</span>
+                  </div>
+                </div>
+
+                <!-- Call to Action: Open Google Maps Directly -->
+                <div class="location-action-bar">
+                  <a href="https://maps.google.com/?q=Palace+of+Dreams" target="_blank" rel="noopener noreferrer" class="btn-location-map" id="btn-open-maps">
+                    <span class="btn-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
+                        <circle cx="12" cy="9" r="2.5"></circle>
+                      </svg>
+                    </span>
+                    <span class="btn-text">📍 الوصول إلى القاعة عبر خرائط Google</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 5: EDITORIAL WEDDING GALLERY
+           ==================================================== -->
+      <section id="gallery" class="scene-gallery" aria-label="معرض الصور">
+        <div class="scene-container">
+          <div class="section-badge">ذكريات وأجواء</div>
+          <h2 class="scene-title">لمحات من حكايتنا</h2>
+          <p class="scene-intro">لحظات من السحر، الجمال، وتفاصيل ليلة صُممت لتبقى في الذاكرة</p>
+
+          <!-- Editorial Asymmetrical Masonry Grid -->
+          <div class="editorial-gallery-grid" id="gallery-grid">
+            
+            <!-- Item 1: Banquet (Tall vertical) -->
+            <div class="gallery-item item-tall" data-tilt data-caption="مائدة الاحتفال الملكية ودفء الشموع">
+              <div class="item-inner">
+                <img src="assets/images/gallery-banquet.jpg" alt="مائدة الاحتفال الملكية" loading="lazy">
+                <div class="item-sheen"></div>
+                <div class="item-overlay">
+                  <span class="item-tag">تفاصيل الاحتفال</span>
+                  <h4 class="item-title">مائدة الشموع والورود</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2: Rings (Square/Macro) -->
+            <div class="gallery-item item-square" data-tilt data-caption="خواتم الميثاق المقدس محاطة بالياسمين وذرات الذهب">
+              <div class="item-inner">
+                <img src="assets/images/gallery-rings.jpg" alt="خواتم الزواج" loading="lazy">
+                <div class="item-sheen"></div>
+                <div class="item-overlay">
+                  <span class="item-tag">الميثاق المقدس</span>
+                  <h4 class="item-title">رباط العمر</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3: Couple Silhouette (Large featured) -->
+            <div class="gallery-item item-featured" data-tilt data-caption="همسات الحب تحت قبة من الأضواء والنجوم">
+              <div class="item-inner">
+                <img src="assets/images/gallery-couple.jpg" alt="العروسان في ليلة الحلم" loading="lazy">
+                <div class="item-sheen"></div>
+                <div class="item-overlay">
+                  <span class="item-tag">ليلة العمر</span>
+                  <h4 class="item-title">معاً إلى الأبد</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4: Ballroom (Wide landscape) -->
+            <div class="gallery-item item-wide" data-tilt data-caption="قاعة الأحلام الملكية تتلألأ بالثريات الكريستالية">
+              <div class="item-inner">
+                <img src="assets/images/venue-hall.jpg" alt="قاعة الأحلام الملكية" loading="lazy">
+                <div class="item-sheen"></div>
+                <div class="item-overlay">
+                  <span class="item-tag">الأجواء الملكية</span>
+                  <h4 class="item-title">قاعة الأحلام</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5: Hero Garden Night (Wide landscape) -->
+            <div class="gallery-item item-garden" data-tilt data-caption="حديقة الزفاف الساحرة تحت ضوء القمر">
+              <div class="item-inner">
+                <img src="assets/images/hero-garden.jpg" alt="حديقة الزفاف الليلية" loading="lazy">
+                <div class="item-sheen"></div>
+                <div class="item-overlay">
+                  <span class="item-tag">واحة السحر</span>
+                  <h4 class="item-title">مدخل الحفل الساحر</h4>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Full-Screen Lightbox Modal -->
+      <div id="gallery-lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="عرض الصورة المكبرة">
+        <button class="lightbox-close-btn" id="lightbox-close" aria-label="إغلاق الصورة">✕</button>
+        <div class="lightbox-stage">
+          <img id="lightbox-img" src="" alt="">
+          <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+      </div>
+
+      <!-- ====================================================
+           SCENE 6: SPECIAL CINEMATIC MOMENT
+           ==================================================== -->
+      <section id="cinematic-moment" class="scene-moment" aria-label="لحظة خاصة">
+        <div class="moment-glow-aurora" aria-hidden="true"></div>
+        <div class="scene-container moment-container">
+          
+          <div class="moment-intro-text" id="moment-pre-text">
+            <span class="moment-eyebrow">لحظة وجدانية</span>
+            <h3 class="moment-prompt">هناك لحظة أخيرة قبل أن نلتقي...</h3>
+            <p class="moment-hint">انقر على الخاتم الملكي لفتح الرسالة الخاصة</p>
+          </div>
+
+          <!-- Interactive Golden Orb / Royal Knot -->
+          <div class="moment-interactive-orb" id="moment-orb" role="button" tabindex="0" aria-label="المس لفتح الرسالة الخاصة">
+            <div class="orb-outer-ring"></div>
+            <div class="orb-pulsing-halo"></div>
+            <div class="orb-center-core">
+              <svg viewBox="0 0 60 60" class="orb-svg-rings" fill="none">
+                <circle cx="24" cy="30" r="16" stroke="url(#momentGold)" stroke-width="2.5"/>
+                <circle cx="36" cy="30" r="16" stroke="url(#momentGold)" stroke-width="2.5"/>
+                <circle cx="36" cy="14" r="3.5" fill="#FFF8E7" stroke="url(#momentGold)" stroke-width="1.5"/>
+                <defs>
+                  <linearGradient id="momentGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFF3C4"/>
+                    <stop offset="50%" stop-color="#E5C158"/>
+                    <stop offset="100%" stop-color="#8C6510"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="orb-click-label">المس الخاتم ✨</span>
+          </div>
+
+          <!-- The Dramatic Revealed Message -->
+          <div class="moment-revealed-card" id="moment-revealed-card" aria-hidden="true">
+            <div class="revealed-sparkles"></div>
+            <div class="revealed-icon">🤍</div>
+            <h2 class="revealed-quote">
+              "ننتظر حضوركم لتكتمل فرحتنا"
+            </h2>
+            <p class="revealed-subtext">
+              فرحتنا لا تكتمل إلا بوجود من نحب.. ومشاركتكم لنا هي أثمن الهدايا
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 7: RSVP SECTION (Pure Visual Demonstration)
+           ==================================================== -->
+      <section id="rsvp" class="scene-rsvp" aria-label="تأكيد الحضور">
+        <div class="rsvp-backdrop-decor" aria-hidden="true"></div>
+        <div class="scene-container">
+          <div class="section-badge">تأكيد الحضور</div>
+          <h2 class="scene-title">هل ستشاركونا فرحتنا؟</h2>
+          <p class="scene-intro">
+            نسعد بتأكيد حضوركم الكريم لترتيب كرم الضيافة واستقبالكم بأجمل صورة
+          </p>
+
+          <div class="rsvp-luxury-card" id="rsvp-card-wrapper">
+            <div class="card-border-glow"></div>
+            
+            <!-- Visual RSVP Form -->
+            <form id="rsvp-form" class="rsvp-form" novalidate>
+              
+              <!-- Guest Full Name -->
+              <div class="form-group">
+                <div class="input-floating-wrap">
+                  <input type="text" id="guest-name" name="guest_name" class="luxury-input" placeholder=" " required autocomplete="off">
+                  <label for="guest-name" class="floating-label">الاسم الكامل *</label>
+                  <span class="input-glow-line"></span>
+                </div>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="form-group">
+                <div class="input-floating-wrap">
+                  <input type="tel" id="guest-phone" name="guest_phone" class="luxury-input" placeholder=" " required dir="ltr" style="text-align: right;" autocomplete="off">
+                  <label for="guest-phone" class="floating-label">رقم الهاتف *</label>
+                  <span class="input-glow-line"></span>
+                </div>
+              </div>
+
+              <!-- Attendance Choice Buttons -->
+              <div class="form-group attendance-group">
+                <span class="form-group-title">هل تشرفنا بالحضور؟</span>
+                <div class="attendance-options-grid">
+                  
+                  <label class="attendance-pill-option selected" id="opt-attending">
+                    <input type="radio" name="attendance" value="attending" checked>
+                    <span class="pill-glow"></span>
+                    <span class="pill-icon">✨</span>
+                    <span class="pill-text">بكل تأكيد، سأكون حاضرًا</span>
+                  </label>
+
+                  <label class="attendance-pill-option" id="opt-regret">
+                    <input type="radio" name="attendance" value="regret">
+                    <span class="pill-glow"></span>
+                    <span class="pill-icon">🤍</span>
+                    <span class="pill-text">للأسف لن أتمكن من الحضور</span>
+                  </label>
+
+                </div>
+              </div>
+
+              <!-- Optional Wishes Message -->
+              <div class="form-group">
+                <div class="input-floating-wrap">
+                  <textarea id="guest-wishes" name="guest_wishes" class="luxury-textarea" rows="3" placeholder=" "></textarea>
+                  <label for="guest-wishes" class="floating-label">أترك لنا رسالة جميلة للعروسين (اختياري)</label>
+                  <span class="input-glow-line"></span>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-submit-wrapper">
+                <button type="submit" id="btn-submit-rsvp" class="btn-royal-submit">
+                  <span class="btn-glow-aura"></span>
+                  <span class="btn-label">تأكيد الرد والتسجيل ✨</span>
+                </button>
+              </div>
+
+              <div class="rsvp-demo-notice">
+                <span>نموذج استعراضي تفاعلي لتأكيد الحضور</span>
+              </div>
+            </form>
+
+            <!-- Visual Confirmation Animation Screen (Revealed on Submit) -->
+            <div id="rsvp-success-screen" class="rsvp-success-screen" aria-hidden="true">
+              <div class="success-ornament">
+                <svg viewBox="0 0 80 80" class="success-ring-svg" fill="none">
+                  <circle cx="40" cy="40" r="36" stroke="url(#successGold)" stroke-width="2"/>
+                  <path d="M26 40 L35 49 L54 30" stroke="url(#successGold)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs>
+                    <linearGradient id="successGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFF3C4"/>
+                      <stop offset="50%" stop-color="#D4AF37"/>
+                      <stop offset="100%" stop-color="#8C6510"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3 class="success-title">شكرًا لمشاركتنا فرحتنا 🤍</h3>
+              <p class="success-desc">
+                تم تسجيل تأكيدكم بكل محبة وامتنان، نسعد ونفخر بلقائكم في ليلتنا المباركة.
+              </p>
+              <div class="success-date-badge">25 ديسمبر 2026 • قاعة الأحلام</div>
+              
+              <button type="button" id="btn-reset-demo" class="btn-reset-demo">
+                تعديل الاستجابة (عرض تجريبي)
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           SCENE 8: FINAL CINEMATIC ENDING (Credits & Farewell)
+           ==================================================== -->
+      <footer id="ending" class="scene-ending" aria-label="خاتمة الدعوة">
+        <div class="ending-sky-glow" aria-hidden="true"></div>
+        <div class="scene-container ending-container">
+          
+          <div class="ending-monogram-crest">
+            <svg viewBox="0 0 80 80" class="ending-crest-svg" fill="none" stroke="currentColor">
+              <circle cx="40" cy="40" r="38" stroke-width="0.8" stroke-dasharray="3 3"/>
+              <circle cx="40" cy="40" r="30" stroke-width="1.2"/>
+              <path d="M40 16 L40 64 M20 40 L60 40" stroke-width="0.8" opacity="0.4"/>
+            </svg>
+          </div>
+
+          <h2 class="ending-names">أحمد & سارة</h2>
+
+          <div class="ending-divider-flourish">
+            <svg viewBox="0 0 160 30" class="flourish-svg" fill="none" stroke="currentColor">
+              <path d="M10 15 C45 0, 55 30, 80 15 C105 0, 115 30, 150 15" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="80" cy="15" r="3" fill="currentColor"/>
+            </svg>
+          </div>
+
+          <p class="ending-quote">
+            "كانت هذه مجرد البداية...<br>
+            أما أجمل الحكايات، فما زالت أمامنا"
+          </p>
+
+          <div class="ending-date-stamp">
+            <span class="stamp-digit">25</span>
+            <span class="stamp-dot">•</span>
+            <span class="stamp-digit">12</span>
+            <span class="stamp-dot">•</span>
+            <span class="stamp-digit">2026</span>
+          </div>
+
+          <!-- Social Sharing & Top Navigation -->
+          <div class="ending-actions">
+            <a href="https://api.whatsapp.com/send?text=%D8%AF%D8%B9%D9%88%D8%A9%20%D8%B2%D9%81%D8%A7%D9%81%20%D8%A3%D8%AD%D9%85%D8%AF%20%D9%88%D8%B3%D8%A7%D8%B1%D8%A9%20%E2%9C%A8%2025%20%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1%202026%20%D9%81%D9%8A%20%D9%82%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D8%A3%D8%AD%D9%84%D8%A7%D9%85" target="_blank" rel="noopener noreferrer" class="btn-share-whatsapp" id="btn-share-invite">
+              <span class="share-icon">💌</span>
+              <span>مشاركة الدعوة مع الأحباء</span>
+            </a>
+
+            <button type="button" id="btn-back-to-top" class="btn-back-top" aria-label="العودة لأعلى الصفحة">
+              <span>↑</span>
+              <span>العودة للبداية</span>
+            </button>
+          </div>
+
+          <div class="ending-credits">
+            صُممت بحب وعناية فائقة لتليق بليلة العمر • أحمد & سارة 2026
+          </div>
+
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- External Animation & Smooth Scroll Engines -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Core Script Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
