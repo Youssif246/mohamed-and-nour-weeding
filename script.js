@@ -274,44 +274,50 @@ function triggerHeroEntrance() {
 
   tl.fromTo(
     ".hero-bg-layer",
-    { scale: 1.12, filter: "brightness(0.3) saturate(1.4)" },
-    { scale: 1, filter: "brightness(0.68) saturate(1.15)", duration: 2.2 }
+    { scale: 1.1, filter: "brightness(1.15) contrast(0.95)" },
+    { scale: 1, filter: "brightness(1.02) contrast(1.02)", duration: 2.2 }
   )
     .fromTo(
-      ".royal-crest",
-      { opacity: 0, y: -20, scale: 0.8 },
-      { opacity: 1, y: 0, scale: 1, duration: 1 },
-      "-=1.6"
+      ".hero-content",
+      { opacity: 0, scale: 0.94, y: 25 },
+      { opacity: 1, scale: 1, y: 0, duration: 1.4 },
+      "-=1.8"
     )
     .fromTo(
-      ".hero-header-tag",
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.8 },
+      ".royal-crest",
+      { opacity: 0, y: -15, scale: 0.85 },
+      { opacity: 1, y: 0, scale: 1, duration: 1 },
       "-=1.2"
     )
     .fromTo(
-      ".hero-name",
-      { opacity: 0, y: 30, filter: "blur(8px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.25, duration: 1.4 },
+      ".hero-header-tag",
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.8 },
       "-=0.9"
+    )
+    .fromTo(
+      ".hero-name",
+      { opacity: 0, y: 25, filter: "blur(6px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.2, duration: 1.2 },
+      "-=0.7"
     )
     .fromTo(
       ".hero-divider-knot",
       { opacity: 0, scaleX: 0 },
-      { opacity: 1, scaleX: 1, duration: 1 },
-      "-=1.1"
+      { opacity: 1, scaleX: 1, duration: 0.9 },
+      "-=0.9"
     )
     .fromTo(
       ".hero-subtext",
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 1 },
-      "-=0.7"
+      { opacity: 0, y: 12 },
+      { opacity: 1, y: 0, duration: 0.9 },
+      "-=0.6"
     )
     .fromTo(
       ".hero-cta-wrapper",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.9 },
-      "-=0.6"
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.8 },
+      "-=0.5"
     );
 }
 
