@@ -87,12 +87,18 @@ function initAmbientCanvas() {
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
+  if (!ctx) return;
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  let resizeFrame = null;
   window.addEventListener("resize", () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    if (resizeFrame) return;
+    resizeFrame = requestAnimationFrame(() => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      resizeFrame = null;
+    });
   });
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -100,7 +106,7 @@ function initAmbientCanvas() {
 
   // Particle sets
   const particles = [];
-  const particleCount = window.innerWidth < 768 ? 40 : 85;
+  const particleCount = window.innerWidth < 768 ? 24 : 50;
 
   // Golden embers and petals
   class Particle {
@@ -161,24 +167,22 @@ function initAmbientCanvas() {
     }
 
     draw() {
-      ctx.save();
       if (this.type === "petal") {
+        ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
         ctx.fillStyle = this.color + this.opacity + ")";
         ctx.beginPath();
         ctx.ellipse(0, 0, this.size, this.size * 1.8, Math.PI / 4, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       } else {
         const op = this.currentOpacity || this.opacity;
         ctx.fillStyle = this.color + op + ")";
-        ctx.shadowBlur = this.size * 3;
-        ctx.shadowColor = "rgba(212, 175, 55, 0.8)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.restore();
     }
   }
 
@@ -203,7 +207,32 @@ function initAmbientCanvas() {
     }
   };
 
+  let animationFrame = null;
+  let isVisible = true;
+
+  const visibilityObserver = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting;
+    if (isVisible && !animationFrame) animate();
+  });
+  visibilityObserver.observe(canvas);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      isVisible = false;
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    } else {
+      isVisible = true;
+      if (!animationFrame) animate();
+    }
+  });
+
   function animate() {
+    if (!isVisible) {
+      animationFrame = null;
+      return;
+    }
+
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < particles.length; i++) {
@@ -224,17 +253,13 @@ function initAmbientCanvas() {
         continue;
       }
 
-      ctx.save();
       ctx.fillStyle = `rgba(244, 227, 178, ${bp.opacity})`;
-      ctx.shadowBlur = bp.size * 4;
-      ctx.shadowColor = "rgba(212, 175, 55, 1)";
       ctx.beginPath();
       ctx.arc(bp.x, bp.y, bp.size, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
     }
 
-    requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
   }
 
   animate();
@@ -331,19 +356,25 @@ function initHeroParallax() {
 
   if (!heroSection || !heroBg || !heroContent) return;
 
-  // Parallax on mousemove (desktop only)
-  heroSection.addEventListener("mousemove", (e) => {
+  let parallaxFrame = null;
+  let pointerX = 0;
+  let pointerY = 0;
+
+  function updateParallax() {
+    parallaxFrame = null;
     if (window.innerWidth < 992) return;
 
-    const { clientX, clientY } = e;
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const deltaX = (pointerX - window.innerWidth / 2) / (window.innerWidth / 2);
+    const deltaY = (pointerY - window.innerHeight / 2) / (window.innerHeight / 2);
 
-    const deltaX = (clientX - centerX) / centerX;
-    const deltaY = (clientY - centerY) / centerY;
+    heroBg.style.transform = `translate3d(${deltaX * -15}px, ${deltaY * -12}px, 0) scale(1.04)`;
+    heroContent.style.transform = `translate3d(${deltaX * 10}px, ${deltaY * 8}px, 0)`;
+  }
 
-    heroBg.style.transform = `scale(1.04) translate(${deltaX * -15}px, ${deltaY * -12}px)`;
-    heroContent.style.transform = `translate(${deltaX * 10}px, ${deltaY * 8}px)`;
+  heroSection.addEventListener("mousemove", (e) => {
+    pointerX = e.clientX;
+    pointerY = e.clientY;
+    if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
   });
 
   heroSection.addEventListener("mouseleave", () => {
