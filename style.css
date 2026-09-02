@@ -70,6 +70,8 @@ html {
   background-color: var(--bg-base);
   color: var(--text-main);
   direction: rtl;
+  width: 100%;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -81,6 +83,7 @@ body {
   font-weight: 300;
   line-height: 1.75;
   overflow-x: hidden;
+  width: 100%;
   background: var(--bg-gradient);
   min-height: 100vh;
   color: var(--text-main);
@@ -149,7 +152,7 @@ img {
 .cinematic-intro {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 1000;
   display: flex;
@@ -352,7 +355,7 @@ img {
 .scene-hero {
   position: relative;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -553,6 +556,7 @@ img {
 .scene-details {
   position: relative;
   text-align: center;
+  overflow: hidden;
 }
 
 .astrolabe-wrapper {
@@ -739,6 +743,7 @@ img {
 .scene-countdown {
   position: relative;
   text-align: center;
+  overflow: hidden;
 }
 
 .countdown-backdrop-glow {
@@ -1815,6 +1820,30 @@ img {
 
   .scene-container {
     padding: 4.5rem 1.25rem;
+  }
+
+  .astrolabe-halo {
+    width: 320px;
+    height: 320px;
+  }
+
+  .ring-outer {
+    width: 380px;
+    height: 380px;
+  }
+
+  .ring-mid {
+    width: 290px;
+    height: 290px;
+  }
+
+  .ring-inner {
+    width: 210px;
+    height: 210px;
+  }
+
+  .countdown-backdrop-glow {
+    width: 100%;
   }
 
   .hero-content {

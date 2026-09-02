@@ -409,7 +409,7 @@ function initAstrolabeAnimations() {
   gsap.from(".celestial-card", {
     scrollTrigger: {
       trigger: "#astrolabe-composition",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
     opacity: 0,
@@ -422,7 +422,7 @@ function initAstrolabeAnimations() {
   gsap.from(".center-medallion", {
     scrollTrigger: {
       trigger: "#astrolabe-composition",
-      start: "top 75%",
+      start: "top 90%",
       toggleActions: "play none none reverse",
     },
     opacity: 0,
@@ -476,7 +476,7 @@ function initCountdownTimer() {
     gsap.from(".countdown-unit-box", {
       scrollTrigger: {
         trigger: "#countdown-timer",
-        start: "top 80%",
+        start: "top 90%",
         toggleActions: "play none none reverse",
       },
       opacity: 0,
@@ -569,7 +569,7 @@ function initEditorialGallery() {
     gsap.from(".gallery-item", {
       scrollTrigger: {
         trigger: "#gallery-grid",
-        start: "top 75%",
+        start: "top 85%",
       },
       opacity: 0,
       y: 40,
