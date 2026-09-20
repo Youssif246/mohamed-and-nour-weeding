@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroParallax();
   initAstrolabeAnimations();
   initCountdownTimer();
-  initEditorialGallery();
   initCinematicMoment();
   initVisualRsvpForm();
   initBackToTop();
@@ -284,65 +283,81 @@ function initOpeningIntro() {
       canvasBurstTrigger(window.innerWidth / 2, window.innerHeight / 2, 70);
     }
 
+    // Smoothly start hero entrance animation in harmony with curtains opening
+    setTimeout(() => {
+      triggerHeroEntrance();
+    }, 250);
+
     setTimeout(() => {
       introEl.classList.add("revealed");
       document.body.classList.remove("loading-locked");
-
-      // Trigger GSAP entrance for Hero Section
-      triggerHeroEntrance();
-    }, 1200);
+      if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+      }
+    }, 1300);
   });
 }
 
 function triggerHeroEntrance() {
-  if (typeof gsap === "undefined") return;
+  const heroContent = document.getElementById("hero-content");
+  if (!heroContent) return;
+
+  // Make visible now that curtains are parting
+  heroContent.style.visibility = "visible";
+
+  if (typeof gsap === "undefined") {
+    heroContent.style.opacity = "1";
+    heroContent.style.transform = "none";
+    return;
+  }
 
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  tl.fromTo(
-    ".hero-bg-layer",
-    { scale: 1.1, filter: "brightness(1.15) contrast(0.95)" },
-    { scale: 1, filter: "brightness(1.02) contrast(1.02)", duration: 2.2 }
-  )
-    .fromTo(
-      ".hero-content",
-      { opacity: 0, scale: 0.94, y: 25 },
-      { opacity: 1, scale: 1, y: 0, duration: 1.4 },
-      "-=1.8"
-    )
+  tl.to(heroContent, {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    duration: 1.3,
+  })
     .fromTo(
       ".royal-crest",
       { opacity: 0, y: -15, scale: 0.85 },
-      { opacity: 1, y: 0, scale: 1, duration: 1 },
-      "-=1.2"
+      { opacity: 1, y: 0, scale: 1, duration: 0.9 },
+      "-=1.0"
     )
     .fromTo(
       ".hero-header-tag",
       { opacity: 0, y: 12 },
       { opacity: 1, y: 0, duration: 0.8 },
-      "-=0.9"
+      "-=0.8"
     )
     .fromTo(
       ".hero-name",
-      { opacity: 0, y: 25, filter: "blur(6px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.2, duration: 1.2 },
-      "-=0.7"
+      { opacity: 0, y: 20, filter: "blur(4px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.18, duration: 1.1 },
+      "-=0.6"
     )
     .fromTo(
       ".hero-divider-knot",
       { opacity: 0, scaleX: 0 },
-      { opacity: 1, scaleX: 1, duration: 0.9 },
-      "-=0.9"
+      { opacity: 1, scaleX: 1, duration: 0.8 },
+      "-=0.8"
     )
     .fromTo(
       ".hero-subtext",
       { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.9 },
-      "-=0.6"
+      { opacity: 1, y: 0, duration: 0.8 },
+      "-=0.5"
+    )
+    .fromTo(
+      ".hero-quran-verse",
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.8 },
+      "-=0.5"
     )
     .fromTo(
       ".hero-cta-wrapper",
-      { opacity: 0, y: 15 },
+      { opacity: 0, y: 12 },
       { opacity: 1, y: 0, duration: 0.8 },
       "-=0.5"
     );
@@ -407,32 +422,42 @@ function initHeroParallax() {
 function initAstrolabeAnimations() {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
-  // Reveal timeline for celestial cards on scroll
-  gsap.from(".celestial-card", {
-    scrollTrigger: {
-      trigger: "#astrolabe-composition",
-      start: "top 90%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    y: 40,
-    stagger: 0.2,
-    duration: 1.2,
-    ease: "power2.out",
-  });
+  // Reveal timeline for celestial cards on scroll without jumping/flashing
+  gsap.fromTo(
+    ".celestial-card",
+    { opacity: 0, y: 35 },
+    {
+      scrollTrigger: {
+        trigger: "#astrolabe-composition",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 1,
+      y: 0,
+      stagger: 0.18,
+      duration: 1,
+      ease: "power2.out",
+      immediateRender: false,
+    }
+  );
 
-  gsap.from(".center-medallion", {
-    scrollTrigger: {
-      trigger: "#astrolabe-composition",
-      start: "top 90%",
-      toggleActions: "play none none reverse",
-    },
-    opacity: 0,
-    scale: 0.7,
-    rotation: -25,
-    duration: 1.4,
-    ease: "back.out(1.5)",
-  });
+  gsap.fromTo(
+    ".center-medallion",
+    { opacity: 0, scale: 0.75, rotation: -20 },
+    {
+      scrollTrigger: {
+        trigger: "#astrolabe-composition",
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.2,
+      ease: "back.out(1.5)",
+      immediateRender: false,
+    }
+  );
 }
 
 /* ============================================================================
@@ -473,112 +498,25 @@ function initCountdownTimer() {
   update();
   setInterval(update, 1000);
 
-  // GSAP scroll trigger for countdown
+  // GSAP scroll trigger for countdown without jumping/flashing
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.from(".countdown-unit-box", {
-      scrollTrigger: {
-        trigger: "#countdown-timer",
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      },
-      opacity: 0,
-      y: 30,
-      stagger: 0.15,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }
-}
-
-/* ============================================================================
-   8. SCENE 5: EDITORIAL GALLERY & 3D TILT & LIGHTBOX
-   ============================================================================ */
-function initEditorialGallery() {
-  const items = document.querySelectorAll(".gallery-item");
-  const lightbox = document.getElementById("gallery-lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const lightboxCaption = document.getElementById("lightbox-caption");
-  const lightboxClose = document.getElementById("lightbox-close");
-
-  // 3D Tilt on hover for gallery items
-  items.forEach((item) => {
-    item.addEventListener("mousemove", (e) => {
-      const rect = item.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const tiltX = (centerY - y) / 12;
-      const tiltY = (x - centerX) / 12;
-
-      const inner = item.querySelector(".item-inner");
-      if (inner) {
-        inner.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+    gsap.fromTo(
+      ".countdown-unit-box",
+      { opacity: 0, y: 30 },
+      {
+        scrollTrigger: {
+          trigger: "#countdown-timer",
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+        opacity: 1,
+        y: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: "power2.out",
+        immediateRender: false,
       }
-    });
-
-    item.addEventListener("mouseleave", () => {
-      const inner = item.querySelector(".item-inner");
-      if (inner) {
-        inner.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-      }
-    });
-
-    // Lightbox click
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      const caption = item.getAttribute("data-caption") || "";
-
-      if (img && lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || "صورة من معرض الزفاف";
-        if (lightboxCaption) lightboxCaption.textContent = caption;
-
-        lightbox.classList.add("active");
-        lightbox.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-    });
-  });
-
-  // Close Lightbox
-  function closeLightbox() {
-    if (lightbox) {
-      lightbox.classList.remove("active");
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-  }
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", closeLightbox);
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
-  });
-
-  // Scroll reveals for gallery items
-  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.from(".gallery-item", {
-      scrollTrigger: {
-        trigger: "#gallery-grid",
-        start: "top 85%",
-      },
-      opacity: 0,
-      y: 40,
-      stagger: 0.18,
-      duration: 1.1,
-      ease: "power2.out",
-    });
+    );
   }
 }
 
