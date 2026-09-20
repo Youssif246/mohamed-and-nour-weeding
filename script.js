@@ -11,17 +11,19 @@
    Centralized parameters for seamless customization.
    ============================================================================ */
 const WEDDING_CONFIG = {
-  groomName: "أحمد",
-  brideName: "سارة",
-  dateArabic: "الجمعة، 25 ديسمبر 2026",
-  hijriDateArabic: "16 رجب 1448 هـ",
+  groomName: "محمد",
+  brideName: "نور",
+  groomNameEn: "Mohamed",
+  brideNameEn: "Nour",
+  dateArabic: "الأحد، 4 أكتوبر 2026",
+  hijriDateArabic: "22 ربيع الأول 1448 هـ",
   timeArabic: "8:00 مساءً",
-  venueName: "قاعة الأحلام",
-  venueSubName: "القاعة الكبرى الملكية",
-  venueAddress: "طريق الملك عبدالعزيز — بوابة الضيوف الرئيسية",
-  googleMapsUrl: "https://maps.google.com/?q=Palace+of+Dreams",
-  // Target countdown timestamp: Dec 25, 2026 20:00:00 GMT+0300
-  targetCountdownDate: new Date("2026-12-25T20:00:00+03:00").getTime(),
+  venueName: "قاعة ريتال فيو",
+  venueSubName: "نادي المعلمين — البحر الأعظم",
+  venueAddress: "شارع البحر الأعظم، الجيزة — قاعات السرايا",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=30.0124909,31.2178204",
+  // Target countdown timestamp: Oct 4, 2026 20:00:00 GMT+0300
+  targetCountdownDate: new Date("2026-10-04T20:00:00+03:00").getTime(),
 };
 
 document.addEventListener("DOMContentLoaded", () => {

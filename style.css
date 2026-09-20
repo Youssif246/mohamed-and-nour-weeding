@@ -481,6 +481,35 @@ img {
   margin-bottom: 2.2rem;
 }
 
+.hero-quran-verse {
+  margin: 0 auto 2.2rem;
+  max-width: 680px;
+  padding: 1.25rem 2rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(120, 85, 14, 0.08);
+}
+
+.hero-quran-verse .quran-text {
+  font-family: var(--font-amiri);
+  font-size: clamp(1.1rem, 2.3vw, 1.45rem);
+  line-height: 2;
+  color: var(--gold-dark-bronze);
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-quran-verse .quran-surah {
+  display: block;
+  font-family: var(--font-alex);
+  font-size: 0.88rem;
+  color: var(--gold-rich);
+  margin-top: 0.6rem;
+  font-weight: 500;
+}
+
 .hero-cta-wrapper {
   margin-top: 0.4rem;
 }
@@ -841,10 +870,20 @@ img {
   align-items: stretch;
 }
 
-.venue-img-wrap {
+.venue-img-wrap,
+.venue-map-wrap {
   position: relative;
   min-height: 380px;
   overflow: hidden;
+  background: #F2EDE4;
+}
+
+.venue-map-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border: 0;
+  display: block;
 }
 
 .venue-image {
