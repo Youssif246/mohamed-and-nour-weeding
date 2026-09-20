@@ -313,12 +313,21 @@ function triggerHeroEntrance() {
 
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  tl.to(heroContent, {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    duration: 1.3,
-  })
+  tl.fromTo(
+    ".hero-bg-layer",
+    { scale: 1.07 },
+    { scale: 1, duration: 2 }
+  )
+    .to(
+      heroContent,
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1.3,
+      },
+      "-=1.7"
+    )
     .fromTo(
       ".royal-crest",
       { opacity: 0, y: -15, scale: 0.85 },

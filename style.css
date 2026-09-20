@@ -365,10 +365,10 @@ img {
 .hero-bg-layer {
   position: absolute;
   inset: -5%;
-  background: 
-    radial-gradient(circle at 50% 25%, #FFFFFF 0%, rgba(255, 252, 245, 0.95) 30%, rgba(248, 239, 222, 0.8) 60%, var(--bg-base) 100%),
-    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(197, 155, 39, 0.1) 0%, transparent 45%);
+  background-image: url('assets/images/hero-light.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
   filter: brightness(1.02) contrast(1.02);
   transform: translateZ(0);
   will-change: transform;
