@@ -47,13 +47,13 @@ function initLenisAndGSAP() {
   // Check if Lenis is loaded
   if (typeof Lenis !== "undefined") {
     lenisInstance = new Lenis({
-      duration: 1.4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.8,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.6,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 2.0,
       infinite: false,
     });
 
@@ -407,7 +407,7 @@ function initHeroParallax() {
       const target = document.getElementById("details");
       if (target) {
         if (lenisInstance) {
-          lenisInstance.scrollTo(target, { offset: -30, duration: 1.6 });
+          lenisInstance.scrollTo(target, { offset: -25, duration: 0.75 });
         } else {
           target.scrollIntoView({ behavior: "smooth" });
         }
@@ -674,13 +674,31 @@ function initVisualRsvpForm() {
    ============================================================================ */
 function initBackToTop() {
   const btn = document.getElementById("btn-back-to-top");
-  if (!btn) return;
+  if (btn) {
+    btn.addEventListener("click", () => {
+      if (lenisInstance) {
+        lenisInstance.scrollTo(0, { duration: 0.75 });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }
 
-  btn.addEventListener("click", () => {
-    if (lenisInstance) {
-      lenisInstance.scrollTo(0, { duration: 2 });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+  // Universal snappy smooth scroll for all internal anchors
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const targetId = anchor.getAttribute("href");
+      if (targetId && targetId !== "#") {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetEl, { offset: -25, duration: 0.75 });
+          } else {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+    });
   });
 }
