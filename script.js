@@ -21,7 +21,7 @@ const WEDDING_CONFIG = {
   venueName: "قاعة ريتال فيو",
   venueSubName: "نادي المعلمين — البحر الأعظم",
   venueAddress: "شارع البحر الأعظم، الجيزة — قاعات السرايا",
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=30.0124909,31.2178204",
+  googleMapsUrl: "https://maps.app.goo.gl/dYpVEPK7u5eKUrrQ9",
   // Target countdown timestamp: Oct 4, 2026 20:00:00 GMT+0300
   targetCountdownDate: new Date("2026-10-04T20:00:00+03:00").getTime(),
 };
