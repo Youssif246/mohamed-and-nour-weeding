@@ -586,14 +586,16 @@ function initCinematicMoment() {
 }
 
 /* ============================================================================
-   10. SCENE 7: RSVP SECTION (PURE VISUAL DEMONSTRATION)
-   Zero backend, zero database, zero LocalStorage, zero data collection.
-   Pure front-end visual celebration.
+   10. SCENE 7: RSVP SECTION (CONNECTED VIA WEB3FORMS)
+   Submits guest confirmation to couple's email via Web3Forms API.
    ============================================================================ */
 function initVisualRsvpForm() {
   const form = document.getElementById("rsvp-form");
   const successScreen = document.getElementById("rsvp-success-screen");
   const resetBtn = document.getElementById("btn-reset-demo");
+  const submitBtn = document.getElementById("btn-submit-rsvp");
+  const submitLabel = document.getElementById("btn-rsvp-label");
+  const statusMsg = document.getElementById("rsvp-status-message");
   const optionPills = document.querySelectorAll(".attendance-pill-option");
 
   // Radio button selection visual pill state
@@ -608,8 +610,7 @@ function initVisualRsvpForm() {
 
   if (!form || !successScreen) return;
 
-  form.addEventListener("submit", (e) => {
-    // PREVENT ALL DEFAULT FORM BEHAVIOR OR REAL NETWORK SUBMISSIONS
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nameInput = document.getElementById("guest-name");
@@ -625,46 +626,100 @@ function initVisualRsvpForm() {
       return;
     }
 
-    // Trigger golden particles fountain over the form
-    const rect = form.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 3;
-
-    if (canvasBurstTrigger) {
-      canvasBurstTrigger(centerX, centerY, 80);
+    // Set button loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = "جاري إرسال تأكيدك... ✨";
+    }
+    if (statusMsg) {
+      statusMsg.style.display = "none";
+      statusMsg.textContent = "";
     }
 
-    // Animate transition into confirmation card
-    if (typeof gsap !== "undefined") {
-      gsap.to(form, {
-        opacity: 0,
-        y: -20,
-        duration: 0.5,
-        onComplete: () => {
+    try {
+      const formData = new FormData(form);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200 && result.success) {
+        // Trigger golden particles fountain over the form
+        const rect = form.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 3;
+
+        if (canvasBurstTrigger) {
+          canvasBurstTrigger(centerX, centerY, 80);
+        }
+
+        // Animate transition into confirmation card
+        if (typeof gsap !== "undefined") {
+          gsap.to(form, {
+            opacity: 0,
+            y: -20,
+            duration: 0.5,
+            onComplete: () => {
+              form.style.display = "none";
+              successScreen.classList.add("active");
+              successScreen.setAttribute("aria-hidden", "false");
+
+              gsap.fromTo(
+                successScreen,
+                { opacity: 0, scale: 0.92, y: 20 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out" }
+              );
+            },
+          });
+        } else {
           form.style.display = "none";
           successScreen.classList.add("active");
           successScreen.setAttribute("aria-hidden", "false");
-
-          gsap.fromTo(
-            successScreen,
-            { opacity: 0, scale: 0.92, y: 20 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power2.out" }
-          );
-        },
-      });
-    } else {
-      form.style.display = "none";
-      successScreen.classList.add("active");
+        }
+      } else {
+        if (statusMsg) {
+          statusMsg.style.display = "block";
+          statusMsg.style.color = "#D9534F";
+          statusMsg.textContent = result.message || "حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.";
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitLabel) submitLabel.textContent = "تأكيد الرد والتسجيل ✨";
+        }
+      }
+    } catch (err) {
+      console.error("Web3Forms submission error:", err);
+      // Fallback: If network issue, show polite notice
+      if (statusMsg) {
+        statusMsg.style.display = "block";
+        statusMsg.style.color = "#D9534F";
+        statusMsg.textContent = "تعذر الاتصال بالشبكة، يرجى التحقق من اتصال الإنترنت والمحاولة ثانية.";
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = "تأكيد الرد والتسجيل ✨";
+      }
     }
   });
 
-  // Reset button to test the visual demo again
+  // Reset button to test or submit another response
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       successScreen.classList.remove("active");
       successScreen.setAttribute("aria-hidden", "true");
       form.style.display = "block";
       form.reset();
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = "تأكيد الرد والتسجيل ✨";
+      }
 
       // Reset selection
       optionPills.forEach((p) => p.classList.remove("selected"));

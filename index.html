@@ -139,10 +139,15 @@
           </div>
 
           <div class="hero-cta-wrapper" data-speed="1.15">
-            <a href="#details" class="btn-hero-scroll" id="btn-hero-explore">
-              <span class="btn-pulse-ring"></span>
+            <a href="#details" class="btn-hero-scroll" id="btn-hero-explore" aria-label="اكتشف تفاصيل الحفل">
+              <span class="btn-sheen" aria-hidden="true"></span>
               <span class="btn-label">اكتشف تفاصيل الحفل</span>
-              <span class="btn-arrow">↓</span>
+              <span class="btn-arrow-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="svg-btn-arrow" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="4" x2="12" y2="20"></line>
+                  <polyline points="19 13 12 20 5 13"></polyline>
+                </svg>
+              </span>
             </a>
           </div>
         </div>
@@ -338,14 +343,15 @@
 
                 <!-- Call to Action: Open Google Maps Directly -->
                 <div class="location-action-bar">
-                  <a href="https://www.google.com/maps/search/?api=1&query=30.0124909,31.2178204" target="_blank" rel="noopener noreferrer" class="btn-location-map" id="btn-open-maps">
-                    <span class="btn-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path>
-                        <circle cx="12" cy="9" r="2.5"></circle>
+                  <a href="https://www.google.com/maps/search/?api=1&query=30.0124909,31.2178204" target="_blank" rel="noopener noreferrer" class="btn-location-map" id="btn-open-maps" aria-label="فتح موقع الحفل عبر خرائط جوجل">
+                    <span class="btn-sheen" aria-hidden="true"></span>
+                    <span class="btn-location-icon-circle" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" class="svg-map-pin" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
                       </svg>
                     </span>
-                    <span class="btn-text">📍 فتح الموقع وبدء الاتجاهات عبر Google Maps</span>
+                    <span class="btn-text">فتح الموقع عبر Google Maps</span>
                   </a>
                 </div>
               </div>
@@ -393,10 +399,10 @@
             <div class="revealed-sparkles"></div>
             <div class="revealed-icon">🤍</div>
             <h2 class="revealed-quote">
-              "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+              "فرحتنا لا تكتمل إلا بوجودكم، وبكم تحلو أجمل ليالي العمر"
             </h2>
             <p class="revealed-subtext">
-              سورة الروم (آية ٢١) — بكم ومعكم تكتمل فرحتنا، ننتظر تشريفكم لنا في ليلة العمر
+              حضوركم يسعدنا ويُبهج قلوبنا في بداية رحلتنا معاً.. ننتظر تشريفكم ومشاركتكم أسعد اللحظات بكل حب وامتنان
             </p>
           </div>
 
@@ -418,13 +424,19 @@
           <div class="rsvp-luxury-card" id="rsvp-card-wrapper">
             <div class="card-border-glow"></div>
             
-            <!-- Visual RSVP Form -->
-            <form id="rsvp-form" class="rsvp-form" novalidate>
+            <!-- RSVP Form connected via Web3Forms -->
+            <form id="rsvp-form" class="rsvp-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
               
+              <!-- Web3Forms Access Key & Config -->
+              <input type="hidden" name="access_key" value="48de1b50-3a9b-4353-a0b4-f8713015ba38">
+              <input type="hidden" name="subject" value="تأكيد حضور زفاف محمد ونور">
+              <input type="hidden" name="from_name" value="دعوة زفاف محمد ونور">
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
               <!-- Guest Full Name -->
               <div class="form-group">
                 <div class="input-floating-wrap">
-                  <input type="text" id="guest-name" name="guest_name" class="luxury-input" placeholder=" " required autocomplete="off">
+                  <input type="text" id="guest-name" name="name" class="luxury-input" placeholder=" " required autocomplete="off">
                   <label for="guest-name" class="floating-label">الاسم الكامل *</label>
                   <span class="input-glow-line"></span>
                 </div>
@@ -433,7 +445,7 @@
               <!-- Phone Number -->
               <div class="form-group">
                 <div class="input-floating-wrap">
-                  <input type="tel" id="guest-phone" name="guest_phone" class="luxury-input" placeholder=" " required dir="ltr" style="text-align: right;" autocomplete="off">
+                  <input type="tel" id="guest-phone" name="phone" class="luxury-input" placeholder=" " required dir="ltr" style="text-align: right;" autocomplete="off">
                   <label for="guest-phone" class="floating-label">رقم الهاتف *</label>
                   <span class="input-glow-line"></span>
                 </div>
@@ -445,14 +457,14 @@
                 <div class="attendance-options-grid">
                   
                   <label class="attendance-pill-option selected" id="opt-attending">
-                    <input type="radio" name="attendance" value="attending" checked>
+                    <input type="radio" name="attendance" value="حاضر بكل تأكيد ✨" checked>
                     <span class="pill-glow"></span>
                     <span class="pill-icon">✨</span>
                     <span class="pill-text">بكل تأكيد، سأكون حاضرًا</span>
                   </label>
 
                   <label class="attendance-pill-option" id="opt-regret">
-                    <input type="radio" name="attendance" value="regret">
+                    <input type="radio" name="attendance" value="للأسف لن أتمكن من الحضور 🤍">
                     <span class="pill-glow"></span>
                     <span class="pill-icon">🤍</span>
                     <span class="pill-text">للأسف لن أتمكن من الحضور</span>
@@ -464,7 +476,7 @@
               <!-- Optional Wishes Message -->
               <div class="form-group">
                 <div class="input-floating-wrap">
-                  <textarea id="guest-wishes" name="guest_wishes" class="luxury-textarea" rows="3" placeholder=" "></textarea>
+                  <textarea id="guest-wishes" name="message" class="luxury-textarea" rows="3" placeholder=" "></textarea>
                   <label for="guest-wishes" class="floating-label">أترك لنا رسالة جميلة للعروسين (اختياري)</label>
                   <span class="input-glow-line"></span>
                 </div>
@@ -474,16 +486,14 @@
               <div class="form-submit-wrapper">
                 <button type="submit" id="btn-submit-rsvp" class="btn-royal-submit">
                   <span class="btn-glow-aura"></span>
-                  <span class="btn-label">تأكيد الرد والتسجيل ✨</span>
+                  <span class="btn-label" id="btn-rsvp-label">تأكيد الرد والتسجيل ✨</span>
                 </button>
               </div>
 
-              <div class="rsvp-demo-notice">
-                <span>نموذج استعراضي تفاعلي لتأكيد الحضور</span>
-              </div>
+              <div id="rsvp-status-message" class="rsvp-status-msg" style="display: none;"></div>
             </form>
 
-            <!-- Visual Confirmation Animation Screen (Revealed on Submit) -->
+            <!-- Confirmation Animation Screen (Revealed on Submit) -->
             <div id="rsvp-success-screen" class="rsvp-success-screen" aria-hidden="true">
               <div class="success-ornament">
                 <svg viewBox="0 0 80 80" class="success-ring-svg" fill="none">
@@ -505,7 +515,7 @@
               <div class="success-date-badge">الأحد 4 أكتوبر 2026 • قاعة ريتال فيو (البحر الأعظم)</div>
               
               <button type="button" id="btn-reset-demo" class="btn-reset-demo">
-                تعديل الاستجابة (عرض تجريبي)
+                تعديل الاستجابة أو تسجيل ضيف آخر
               </button>
             </div>
 
@@ -562,9 +572,11 @@
             <div class="eventa-credit-wrap">
               <span class="eventa-credit-label">تصميم وتنفيذ الدعوة:</span>
               <a href="https://www.facebook.com/eventa.digital/" target="_blank" rel="noopener noreferrer" class="eventa-link" aria-label="صفحة Eventa للدعوات الرقمية على فيسبوك">
-                <svg viewBox="0 0 24 24" class="eventa-fb-icon" aria-hidden="true">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
+                <span class="eventa-fb-circle">
+                  <svg viewBox="0 0 24 24" class="eventa-fb-icon" aria-hidden="true">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </span>
                 <span class="eventa-brand-text">Eventa | إيفينتا للدعوات الرقمية</span>
               </a>
             </div>
