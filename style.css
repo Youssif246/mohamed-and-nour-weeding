@@ -989,11 +989,35 @@ img {
 }
 
 .medallion-monogram {
-  font-family: var(--font-amiri);
-  font-size: 2.4rem;
+  font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
+  font-size: 2.7rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
   color: var(--gold-dark-bronze);
-  line-height: 1.2;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: var(--gold-hero-name-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(120, 85, 14, 0.22));
+  user-select: none;
+}
+
+.medallion-monogram .monogram-letter {
+  display: inline-block;
+  font-weight: 700;
+}
+
+.medallion-monogram .monogram-amp {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.85;
+  margin: 0 0.15rem;
 }
 
 .medallion-date {
