@@ -29,6 +29,7 @@ const WEDDING_CONFIG = {
 document.addEventListener("DOMContentLoaded", () => {
   initLenisAndGSAP();
   initAmbientCanvas();
+  initAudioSystem();
   initOpeningIntro();
   initHeroParallax();
   initAstrolabeAnimations();
@@ -267,6 +268,114 @@ function initAmbientCanvas() {
 }
 
 /* ============================================================================
+   3.1. AUDIO CONTROLLER: BACKGROUND MUSIC & ROYAL SEAL TRIGGER
+   ============================================================================ */
+let weddingAudio = null;
+let audioToggleBtn = null;
+let audioStatusText = null;
+let audioFloatingWidget = null;
+let isAudioPlaying = false;
+
+function initAudioSystem() {
+  weddingAudio = document.getElementById("wedding-audio");
+  audioToggleBtn = document.getElementById("audio-toggle-btn");
+  audioStatusText = document.getElementById("audio-status-text");
+  audioFloatingWidget = document.getElementById("audio-control");
+
+  if (!weddingAudio || !audioToggleBtn) return;
+
+  // Set gentle ambient background volume
+  weddingAudio.volume = 0.8;
+
+  // Toggle button click listener
+  audioToggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleWeddingMusic();
+  });
+
+  // Keep state in sync with native audio events
+  weddingAudio.addEventListener("play", () => {
+    isAudioPlaying = true;
+    updateAudioUI(true);
+  });
+
+  weddingAudio.addEventListener("pause", () => {
+    isAudioPlaying = false;
+    updateAudioUI(false);
+  });
+
+  weddingAudio.addEventListener("ended", () => {
+    weddingAudio.currentTime = 0;
+    weddingAudio.play().catch(() => {});
+  });
+
+  // If the user refreshed or already opened the page
+  if (!document.body.classList.contains("loading-locked")) {
+    showAudioWidget();
+  }
+}
+
+function showAudioWidget() {
+  if (audioFloatingWidget) {
+    audioFloatingWidget.classList.add("widget-visible");
+  }
+}
+
+function playWeddingMusic() {
+  if (!weddingAudio) return;
+
+  showAudioWidget();
+
+  const playPromise = weddingAudio.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        isAudioPlaying = true;
+        updateAudioUI(true);
+      })
+      .catch((err) => {
+        console.warn("Audio playback delayed or blocked by browser policy:", err);
+        isAudioPlaying = false;
+        updateAudioUI(false);
+      });
+  }
+}
+
+function pauseWeddingMusic() {
+  if (!weddingAudio) return;
+  weddingAudio.pause();
+  isAudioPlaying = false;
+  updateAudioUI(false);
+}
+
+function toggleWeddingMusic() {
+  if (!weddingAudio) return;
+  if (weddingAudio.paused) {
+    playWeddingMusic();
+  } else {
+    pauseWeddingMusic();
+  }
+}
+
+function updateAudioUI(playing) {
+  if (!audioToggleBtn) return;
+
+  if (playing) {
+    audioToggleBtn.classList.remove("is-paused");
+    audioToggleBtn.classList.add("is-playing");
+    audioToggleBtn.setAttribute("aria-pressed", "true");
+    audioToggleBtn.setAttribute("aria-label", "إيقاف الموسيقى");
+    audioToggleBtn.setAttribute("title", "إيقاف الموسيقى");
+  } else {
+    audioToggleBtn.classList.remove("is-playing");
+    audioToggleBtn.classList.add("is-paused");
+    audioToggleBtn.setAttribute("aria-pressed", "false");
+    audioToggleBtn.setAttribute("aria-label", "تشغيل الموسيقى");
+    audioToggleBtn.setAttribute("title", "تشغيل الموسيقى");
+  }
+}
+
+/* ============================================================================
    4. SCENE 0: CINEMATIC OPENING & CURTAIN REVEAL
    ============================================================================ */
 function initOpeningIntro() {
@@ -276,7 +385,11 @@ function initOpeningIntro() {
   if (!introEl || !enterBtn) return;
 
   enterBtn.addEventListener("click", () => {
-    // Open curtains with high-end audio-visual drama
+    // 1. Play background wedding music upon clicking the invitation seal
+    playWeddingMusic();
+    showAudioWidget();
+
+    // 2. Open curtains with high-end audio-visual drama
     introEl.classList.add("opened");
 
     if (canvasBurstTrigger) {

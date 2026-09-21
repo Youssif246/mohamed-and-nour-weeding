@@ -81,6 +81,37 @@
   </div>
 
   <!-- ========================================================
+       FLOATING AUDIO CONTROLLER (Wedding Background Music)
+       ======================================================== -->
+  <audio id="wedding-audio" preload="auto" loop playsinline>
+    <source src="assets/sound.mpeg" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الملف الصوتي.
+  </audio>
+
+  <aside id="audio-control" class="audio-floating-widget" aria-label="مشغل موسيقى الحفل">
+    <button id="audio-toggle-btn" class="audio-toggle-btn is-paused" type="button" aria-label="تشغيل موسيقى الحفل" aria-pressed="false" title="تشغيل / إيقاف الموسيقى">
+      <span class="audio-icon-wrap" aria-hidden="true">
+        <!-- Animated Sound Waves / Equalizer (playing state) -->
+        <span class="audio-equalizer">
+          <span class="eq-bar eq-bar-1"></span>
+          <span class="eq-bar eq-bar-2"></span>
+          <span class="eq-bar eq-bar-3"></span>
+          <span class="eq-bar eq-bar-4"></span>
+        </span>
+        <!-- Muted Icon (paused state) -->
+        <span class="audio-muted-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </span>
+      </span>
+      <span class="audio-pulse-halo" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <!-- ========================================================
        MAIN SCROLL CONTAINER (Controlled by Lenis & GSAP)
        ======================================================== -->
   <main id="smooth-wrapper">
